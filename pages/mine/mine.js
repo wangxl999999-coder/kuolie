@@ -6,7 +6,8 @@ Page({
     userInfo: {},
     userId: '',
     points: 0,
-    postCount: 0
+    postCount: 0,
+    historyCount: 0
   },
 
   onLoad() {
@@ -20,11 +21,13 @@ Page({
   initData() {
     const userInfo = app.globalData.userInfo || wx.getStorageSync('userInfo') || {}
     const myPosts = wx.getStorageSync('myPosts') || []
+    const pointsHistory = wx.getStorageSync('pointsHistory') || []
     this.setData({
       userInfo,
       userId: wx.getStorageSync('userId') || 'KL' + Math.floor(Math.random() * 100000),
       points: pointsUtil.getPoints(),
-      postCount: myPosts.length
+      postCount: myPosts.length,
+      historyCount: pointsHistory.length
     })
   },
 

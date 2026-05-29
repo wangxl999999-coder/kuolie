@@ -24,7 +24,7 @@
         </view>
         <view class="stat-divider"></view>
         <view class="stat-item" bindtap="onViewHistory">
-          <text class="stat-num">></text>
+          <text class="stat-num">{{historyCount}}</text>
           <text class="stat-label">积分记录</text>
         </view>
       </view>
