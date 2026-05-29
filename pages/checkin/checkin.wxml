@@ -1,0 +1,77 @@
+<view class="page">
+  <!-- 签到卡片 -->
+  <view class="checkin-card">
+    <view class="checkin-bg">
+      <text class="checkin-title">每日签到</text>
+      <text class="checkin-subtitle">签到一次奖励10积分</text>
+      <view class="checkin-status" wx:if="{{isCheckedIn}}">
+        <text class="checked-icon">✓</text>
+        <text class="checked-text">今日已签到</text>
+      </view>
+      <button class="btn-checkin {{isCheckedIn ? 'btn-checked' : ''}}" bindtap="onCheckIn" disabled="{{isCheckedIn}}">
+        {{isCheckedIn ? '已签到' : '立即签到'}}
+      </button>
+      <text class="checkin-count">已连续签到 {{checkInCount}} 天</text>
+    </view>
+  </view>
+
+  <!-- 积分展示 -->
+  <view class="points-display card">
+    <view class="points-row">
+      <text class="points-label">当前积分</text>
+      <text class="points-number">{{points}}</text>
+    </view>
+    <view class="points-history-link" bindtap="onViewHistory">
+      <text>积分记录</text>
+      <text class="arrow">></text>
+    </view>
+  </view>
+
+  <!-- 做任务赚积分 -->
+  <view class="task-section">
+    <text class="section-title">做任务赚积分</text>
+
+    <view class="task-card card">
+      <view class="task-left">
+        <view class="task-icon-wrap task-icon-video">
+          <text class="task-icon-text">▶</text>
+        </view>
+        <view class="task-info">
+          <text class="task-name">观看视频</text>
+          <text class="task-desc">观看完整视频广告一次</text>
+        </view>
+      </view>
+      <view class="task-right">
+        <text class="task-reward">+10积分</text>
+        <button class="btn-task" bindtap="onWatchVideo" disabled="{{videoWatched}}">{{videoWatched ? '已完成' : '去完成'}}</button>
+      </view>
+    </view>
+
+    <view class="task-card card">
+      <view class="task-left">
+        <view class="task-icon-wrap task-icon-invite">
+          <text class="task-icon-text">👥</text>
+        </view>
+        <view class="task-info">
+          <text class="task-name">邀请好友</text>
+          <text class="task-desc">成功邀请一位好友注册</text>
+        </view>
+      </view>
+      <view class="task-right">
+        <text class="task-reward">+50积分</text>
+        <button class="btn-task" bindtap="onInviteFriend">邀请</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 签到日历 -->
+  <view class="calendar-section card">
+    <text class="section-title">本月签到</text>
+    <view class="calendar-grid">
+      <view class="calendar-day" wx:for="{{calendarDays}}" wx:key="index">
+        <view class="day-dot {{item.checked ? 'day-dot-active' : ''}}"></view>
+        <text class="day-num">{{item.day}}</text>
+      </view>
+    </view>
+  </view>
+</view>

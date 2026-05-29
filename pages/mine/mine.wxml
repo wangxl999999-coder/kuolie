@@ -1,0 +1,68 @@
+<view class="page">
+  <!-- 用户信息卡片 -->
+  <view class="profile-card">
+    <view class="profile-bg">
+      <view class="profile-info" bindtap="onEditProfile">
+        <view class="avatar-wrap">
+          <open-data type="userAvatarUrl" class="avatar-img"></open-data>
+        </view>
+        <view class="user-detail">
+          <text class="user-name">{{userInfo.nickName}}</text>
+          <text class="user-id">ID: {{userId}}</text>
+        </view>
+        <text class="edit-icon">></text>
+      </view>
+      <view class="profile-stats">
+        <view class="stat-item">
+          <text class="stat-num">{{points}}</text>
+          <text class="stat-label">积分</text>
+        </view>
+        <view class="stat-divider"></view>
+        <view class="stat-item">
+          <text class="stat-num">{{postCount}}</text>
+          <text class="stat-label">帖子</text>
+        </view>
+        <view class="stat-divider"></view>
+        <view class="stat-item" bindtap="onViewHistory">
+          <text class="stat-num">></text>
+          <text class="stat-label">积分记录</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 功能菜单 -->
+  <view class="menu-section card">
+    <view class="menu-item" bindtap="onMyPosts">
+      <view class="menu-left">
+        <text class="menu-icon">📝</text>
+        <text class="menu-name">我的帖子</text>
+      </view>
+      <text class="menu-arrow">></text>
+    </view>
+    <view class="menu-divider"></view>
+    <view class="menu-item" bindtap="onFeedback">
+      <view class="menu-left">
+        <text class="menu-icon">💬</text>
+        <text class="menu-name">投诉建议</text>
+      </view>
+      <text class="menu-arrow">></text>
+    </view>
+    <view class="menu-divider"></view>
+    <view class="menu-item" bindtap="onAbout">
+      <view class="menu-left">
+        <text class="menu-icon">ℹ️</text>
+        <text class="menu-name">关于我们</text>
+      </view>
+      <text class="menu-arrow">></text>
+    </view>
+    <view class="menu-divider"></view>
+    <view class="menu-item" bindtap="onClearCache">
+      <view class="menu-left">
+        <text class="menu-icon">🗑️</text>
+        <text class="menu-name">清除缓存</text>
+      </view>
+      <text class="menu-arrow">></text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,58 @@
+<view class="page">
+  <!-- 搜索栏 -->
+  <view class="search-section">
+    <view class="search-wrap">
+      <image class="search-icon" src="/images/icon_search.png" mode="aspectFit"></image>
+      <input class="search-input" placeholder="搜索同城群..." value="{{keyword}}" bindinput="onSearchInput" bindconfirm="onSearch" />
+    </view>
+  </view>
+
+  <!-- 当前积分 -->
+  <view class="points-bar card">
+    <text class="points-label">当前积分</text>
+    <text class="points-value">{{points}}</text>
+    <text class="points-hint">查看群二维码需100积分</text>
+  </view>
+
+  <!-- 群列表 -->
+  <view class="group-list">
+    <view class="group-card card" wx:for="{{filteredGroups}}" wx:key="id">
+      <view class="group-header">
+        <view class="group-avatar">
+          <text class="group-avatar-text">{{item.name[0]}}</text>
+        </view>
+        <view class="group-basic">
+          <text class="group-name">{{item.name}}</text>
+          <text class="group-city">{{item.city}} · {{item.memberCount}}人</text>
+        </view>
+      </view>
+
+      <view class="group-desc">
+        <text>{{item.description}}</text>
+      </view>
+
+      <view class="group-tags">
+        <text class="group-tag" wx:for="{{item.tags}}" wx:for-item="tag" wx:key="*this">{{tag}}</text>
+      </view>
+
+      <view class="group-footer">
+        <view class="group-qrcode-area" bindtap="onViewQrCode" data-id="{{item.id}}" data-name="{{item.name}}">
+          <view class="qrcode-locked" wx:if="{{!item.qrUnlocked}}">
+            <image class="lock-icon" src="/images/icon_lock.png" mode="aspectFit"></image>
+            <text class="lock-text">查看二维码</text>
+            <text class="lock-cost">消耗100积分</text>
+          </view>
+          <view class="qrcode-unlocked" wx:if="{{item.qrUnlocked}}">
+            <image class="qr-img" src="/images/qr_placeholder.png" mode="aspectFit"></image>
+            <text class="qr-tip">长按识别二维码进群</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty-state" wx:if="{{filteredGroups.length === 0}}">
+    <text class="empty-icon">🔍</text>
+    <text class="empty-text">未找到相关同城群</text>
+  </view>
+</view>

@@ -1,0 +1,87 @@
+<view class="page">
+  <!-- 帖子详情 -->
+  <view class="detail-card card">
+    <!-- 作者信息 -->
+    <view class="detail-header">
+      <view class="author-info">
+        <view class="avatar-wrap">
+          <open-data type="userAvatarUrl" class="avatar-default"></open-data>
+        </view>
+        <view class="author-detail">
+          <text class="author-name">{{post.author.nickName}}</text>
+          <text class="post-time">{{post.timeAgo}} · {{post.author.city}}</text>
+        </view>
+      </view>
+      <text class="category-tag tag-{{post.category}}">{{post.categoryName}}</text>
+    </view>
+
+    <!-- 内容 -->
+    <view class="detail-content">
+      <text class="content-text">{{post.content}}</text>
+    </view>
+
+    <!-- 图片 -->
+    <view class="detail-images" wx:if="{{post.images.length > 0}}">
+      <image class="detail-image" wx:for="{{post.images}}" wx:key="index" src="{{item}}" mode="aspectFill" bindtap="onImagePreview" data-src="{{item}}"></image>
+    </view>
+
+    <!-- 二维码区域 -->
+    <view class="detail-qrcode" wx:if="{{post.hasQrCode}}">
+      <view class="qrcode-mask" wx:if="{{!qrUnlocked}}" bindtap="onUnlockQrCode">
+        <image class="lock-icon" src="/images/icon_lock.png" mode="aspectFit"></image>
+        <text class="lock-text">二维码已隐藏</text>
+        <text class="lock-hint">观看视频广告解锁查看完整二维码</text>
+        <button class="btn-unlock">观看视频解锁</button>
+      </view>
+      <view class="qrcode-show" wx:if="{{qrUnlocked}}">
+        <image class="qr-img" src="/images/qr_placeholder.png" mode="aspectFit"></image>
+        <text class="qr-tip">长按识别二维码</text>
+      </view>
+    </view>
+
+    <!-- 互动数据 -->
+    <view class="detail-stats">
+      <text class="stats-item">{{post.likeCount}} 赞</text>
+      <text class="stats-item">{{comments.length}} 评论</text>
+    </view>
+  </view>
+
+  <!-- 评论区 -->
+  <view class="comment-section">
+    <text class="comment-title">评论区</text>
+
+    <view class="comment-list" wx:if="{{comments.length > 0}}">
+      <view class="comment-item" wx:for="{{comments}}" wx:key="id">
+        <view class="comment-avatar">
+          <text class="comment-avatar-text">{{item.nickName[0]}}</text>
+        </view>
+        <view class="comment-body">
+          <text class="comment-name">{{item.nickName}}</text>
+          <text class="comment-text">{{item.content}}</text>
+          <text class="comment-time">{{item.timeAgo}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="comment-empty" wx:if="{{comments.length === 0}}">
+      <text>暂无评论，快来抢沙发～</text>
+    </view>
+  </view>
+
+  <!-- 底部操作栏 -->
+  <view class="bottom-bar">
+    <view class="comment-input-wrap">
+      <input class="comment-input" placeholder="写评论..." value="{{commentText}}" bindinput="onCommentInput" bindconfirm="onCommentSubmit" />
+    </view>
+    <view class="bottom-actions">
+      <view class="action-btn" bindtap="onLike">
+        <image class="action-icon" src="{{post.isLiked ? '/images/icon_liked.png' : '/images/icon_like.png'}}" mode="aspectFit"></image>
+        <text class="action-count">{{post.likeCount}}</text>
+      </view>
+      <button class="action-btn share-btn" open-type="share">
+        <image class="action-icon" src="/images/icon_share.png" mode="aspectFit"></image>
+        <text class="action-count">分享</text>
+      </button>
+    </view>
+  </view>
+</view>

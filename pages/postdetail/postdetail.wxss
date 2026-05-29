@@ -1,0 +1,320 @@
+.page {
+  background: #F5F5F5;
+  min-height: 100vh;
+  padding-bottom: 120rpx;
+}
+
+.detail-card {
+  margin: 20rpx 24rpx;
+}
+
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.author-info {
+  display: flex;
+  align-items: center;
+}
+
+.avatar-wrap {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FF6B6B, #FF8E8E);
+  overflow: hidden;
+  margin-right: 16rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-default {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.author-detail {
+  display: flex;
+  flex-direction: column;
+}
+
+.author-name {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.post-time {
+  font-size: 22rpx;
+  color: #999;
+  margin-top: 4rpx;
+}
+
+.category-tag {
+  font-size: 22rpx;
+  padding: 6rpx 20rpx;
+  border-radius: 20rpx;
+  color: #fff;
+}
+
+.tag-1 {
+  background: linear-gradient(135deg, #FF6B6B, #FF8E8E);
+}
+
+.tag-2 {
+  background: linear-gradient(135deg, #4ECDC4, #6EE7DE);
+}
+
+.tag-3 {
+  background: linear-gradient(135deg, #45B7D1, #65C9E1);
+}
+
+.tag-4 {
+  background: linear-gradient(135deg, #9B59B6, #BB79D6);
+}
+
+.detail-content {
+  margin-bottom: 20rpx;
+}
+
+.content-text {
+  font-size: 30rpx;
+  color: #333;
+  line-height: 1.8;
+  word-break: break-all;
+}
+
+.detail-images {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 20rpx;
+}
+
+.detail-image {
+  width: 210rpx;
+  height: 210rpx;
+  border-radius: 12rpx;
+  margin-right: 12rpx;
+  margin-bottom: 12rpx;
+}
+
+.detail-qrcode {
+  background: #f8f9fa;
+  border-radius: 12rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  display: flex;
+  justify-content: center;
+}
+
+.qrcode-mask {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lock-icon {
+  width: 48rpx;
+  height: 48rpx;
+  margin-bottom: 12rpx;
+}
+
+.lock-text {
+  font-size: 28rpx;
+  color: #666;
+  font-weight: bold;
+}
+
+.lock-hint {
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 8rpx;
+  margin-bottom: 20rpx;
+}
+
+.btn-unlock {
+  background: linear-gradient(135deg, #FF6B6B, #FF8E8E);
+  color: #fff;
+  font-size: 26rpx;
+  padding: 12rpx 40rpx;
+  border-radius: 32rpx;
+  border: none;
+}
+
+.btn-unlock::after {
+  border: none;
+}
+
+.qrcode-show {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.qr-img {
+  width: 240rpx;
+  height: 240rpx;
+  margin-bottom: 12rpx;
+}
+
+.qr-tip {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.detail-stats {
+  display: flex;
+  padding-top: 16rpx;
+  border-top: 1rpx solid #f0f0f0;
+}
+
+.stats-item {
+  font-size: 24rpx;
+  color: #999;
+  margin-right: 30rpx;
+}
+
+.comment-section {
+  margin: 0 24rpx;
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+}
+
+.comment-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
+  display: block;
+}
+
+.comment-list {
+  margin-bottom: 20rpx;
+}
+
+.comment-item {
+  display: flex;
+  padding: 16rpx 0;
+  border-bottom: 1rpx solid #f8f8f8;
+}
+
+.comment-avatar {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4ECDC4, #6EE7DE);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 16rpx;
+  flex-shrink: 0;
+}
+
+.comment-avatar-text {
+  font-size: 28rpx;
+  color: #fff;
+  font-weight: bold;
+}
+
+.comment-body {
+  flex: 1;
+}
+
+.comment-name {
+  font-size: 26rpx;
+  color: #666;
+  display: block;
+}
+
+.comment-text {
+  font-size: 28rpx;
+  color: #333;
+  display: block;
+  margin-top: 8rpx;
+  line-height: 1.5;
+}
+
+.comment-time {
+  font-size: 22rpx;
+  color: #ccc;
+  margin-top: 8rpx;
+  display: block;
+}
+
+.comment-empty {
+  text-align: center;
+  padding: 40rpx 0;
+  color: #999;
+  font-size: 26rpx;
+}
+
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  padding: 16rpx 24rpx;
+  padding-bottom: calc(16rpx + env(safe-area-inset-bottom));
+  background: #fff;
+  box-shadow: 0 -2rpx 12rpx rgba(0, 0, 0, 0.05);
+}
+
+.comment-input-wrap {
+  flex: 1;
+}
+
+.comment-input {
+  background: #F5F5F5;
+  border-radius: 32rpx;
+  padding: 16rpx 24rpx;
+  font-size: 28rpx;
+}
+
+.bottom-actions {
+  display: flex;
+  margin-left: 20rpx;
+}
+
+.action-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 24rpx;
+  background: none;
+  padding: 0;
+  border: none;
+  line-height: 1;
+}
+
+.action-btn::after {
+  border: none;
+}
+
+.share-btn {
+  background: none;
+  padding: 0;
+  border: none;
+  line-height: 1;
+}
+
+.share-btn::after {
+  border: none;
+}
+
+.action-icon {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.action-count {
+  font-size: 20rpx;
+  color: #999;
+  margin-top: 4rpx;
+}

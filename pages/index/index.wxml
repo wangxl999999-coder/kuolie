@@ -1,0 +1,78 @@
+<view class="page">
+  <!-- 搜索栏 -->
+  <view class="search-bar">
+    <view class="search-input-wrap" bindtap="onSearchTap">
+      <image class="search-icon" src="/images/icon_search.png" mode="aspectFit"></image>
+      <text class="search-placeholder">搜索帖子内容...</text>
+    </view>
+    <view class="points-wrap">
+      <text class="points-text">积分: {{points}}</text>
+    </view>
+  </view>
+
+  <!-- 轮播图 -->
+  <view class="banner-section">
+    <swiper class="banner-swiper" indicator-dots="{{true}}" indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#fff" autoplay="{{true}}" interval="{{4000}}" circular="{{true}}">
+      <swiper-item wx:for="{{banners}}" wx:key="id">
+        <view class="banner-item" style="background: linear-gradient(135deg, {{item.color1 || '#FF6B6B'}}, {{item.color2 || '#FF8E8E'}})">
+          <text class="banner-title">{{item.title}}</text>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+
+  <!-- 分类区域 -->
+  <view class="category-section">
+    <view class="category-scroll">
+      <view class="category-item {{currentCategory === 0 ? 'category-active' : ''}}" bindtap="onCategoryTap" data-id="0">
+        <text class="category-icon">🔥</text>
+        <text class="category-name">全部</text>
+      </view>
+      <view class="category-item {{currentCategory === item.id ? 'category-active' : ''}}" wx:for="{{categories}}" wx:key="id" bindtap="onCategoryTap" data-id="{{item.id}}">
+        <text class="category-icon">{{item.icon}}</text>
+        <text class="category-name">{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 帖子列表 -->
+  <view class="post-list">
+    <post-card wx:for="{{posts}}" wx:key="id" post="{{item}}" bindtap="onPostTap" data-id="{{item.id}}"></post-card>
+  </view>
+
+  <view class="load-more" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+  <view class="load-more" wx:if="{{noMore && posts.length > 0}}">
+    <text>没有更多了</text>
+  </view>
+  <view class="empty-state" wx:if="{{posts.length === 0 && !loading}}">
+    <text class="empty-icon">📭</text>
+    <text class="empty-text">暂无帖子，快去发布吧</text>
+  </view>
+</view>
+
+<!-- 搜索弹窗 -->
+<view class="search-modal" wx:if="{{showSearch}}" catchtouchmove="true">
+  <view class="search-modal-content">
+    <view class="search-modal-header">
+      <view class="search-input-focus-wrap">
+        <image class="search-icon" src="/images/icon_search.png" mode="aspectFit"></image>
+        <input class="search-input-real" placeholder="搜索帖子内容..." focus="{{showSearch}}" value="{{searchKeyword}}" bindinput="onSearchInput" bindconfirm="onSearchConfirm" />
+      </view>
+      <text class="search-cancel" bindtap="onSearchCancel">取消</text>
+    </view>
+    <view class="search-results" wx:if="{{searchResults.length > 0}}">
+      <post-card wx:for="{{searchResults}}" wx:key="id" post="{{item}}" bindtap="onPostTap" data-id="{{item.id}}"></post-card>
+    </view>
+    <view class="search-empty" wx:if="{{searchResults.length === 0 && searchKeyword}}">
+      <text>未找到相关帖子</text>
+    </view>
+    <view class="search-hot" wx:if="{{!searchKeyword}}">
+      <text class="search-hot-title">热门搜索</text>
+      <view class="search-hot-tags">
+        <view class="hot-tag" wx:for="{{hotKeywords}}" wx:key="index" bindtap="onHotKeywordTap" data-keyword="{{item}}">{{item}}</view>
+      </view>
+    </view>
+  </view>
+</view>

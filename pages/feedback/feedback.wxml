@@ -1,0 +1,61 @@
+<view class="page">
+  <!-- 类型选择 -->
+  <view class="section card">
+    <text class="section-label">反馈类型</text>
+    <view class="type-list">
+      <view class="type-option {{selectedType === item.value ? 'type-active' : ''}}" wx:for="{{feedbackTypes}}" wx:key="value" bindtap="onTypeSelect" data-value="{{item.value}}">
+        <text>{{item.label}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 内容输入 -->
+  <view class="section card">
+    <text class="section-label">详细描述</text>
+    <textarea class="feedback-input" placeholder="请详细描述您的问题或建议..." maxlength="500" value="{{content}}" bindinput="onContentInput" />
+    <view class="char-count">
+      <text>{{content.length}}/500</text>
+    </view>
+  </view>
+
+  <!-- 联系方式 -->
+  <view class="section card">
+    <text class="section-label">联系方式（选填）</text>
+    <input class="contact-input" placeholder="微信号/QQ号/手机号" value="{{contact}}" bindinput="onContactInput" />
+  </view>
+
+  <!-- 图片上传 -->
+  <view class="section card">
+    <text class="section-label">截图（选填）</text>
+    <view class="image-list">
+      <view class="image-item" wx:for="{{images}}" wx:key="index">
+        <image class="preview-image" src="{{item}}" mode="aspectFill"></image>
+        <view class="image-delete" catchtap="onImageDelete" data-index="{{index}}">
+          <text>✕</text>
+        </view>
+      </view>
+      <view class="image-add" bindtap="onImageAdd" wx:if="{{images.length < 4}}">
+        <text class="add-icon">+</text>
+        <text class="add-text">添加截图</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 提交按钮 -->
+  <view class="submit-wrap">
+    <button class="btn-submit" bindtap="onSubmit" disabled="{{!canSubmit}}">提交反馈</button>
+  </view>
+
+  <!-- 历史反馈 -->
+  <view class="history-section" wx:if="{{feedbackList.length > 0}}">
+    <text class="section-title">历史反馈</text>
+    <view class="history-card card" wx:for="{{feedbackList}}" wx:key="id">
+      <view class="history-header">
+        <text class="history-type">{{item.typeLabel}}</text>
+        <text class="history-status status-{{item.status}}">{{item.statusLabel}}</text>
+      </view>
+      <text class="history-content">{{item.content}}</text>
+      <text class="history-time">{{item.timeAgo}}</text>
+    </view>
+  </view>
+</view>
