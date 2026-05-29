@@ -33,6 +33,7 @@ Page({
 
   onShow() {
     this.setData({ points: pointsUtil.getPoints() })
+    this.loadPosts()
   },
 
   onPullDownRefresh() {
@@ -49,7 +50,8 @@ Page({
 
   loadPosts() {
     this.setData({ loading: true })
-    const allPosts = mockPosts.map(p => ({
+    const myPosts = wx.getStorageSync('myPosts') || []
+    const allPosts = [...myPosts, ...mockPosts].map(p => ({
       ...p,
       timeAgo: timeAgo(p.createTime)
     }))
@@ -108,7 +110,9 @@ Page({
   },
 
   doSearch(keyword) {
-    const results = mockPosts.filter(p =>
+    const myPosts = wx.getStorageSync('myPosts') || []
+    const allPosts = [...myPosts, ...mockPosts]
+    const results = allPosts.filter(p =>
       p.content.indexOf(keyword) !== -1 ||
       p.categoryName.indexOf(keyword) !== -1
     ).map(p => ({ ...p, timeAgo: timeAgo(p.createTime) }))

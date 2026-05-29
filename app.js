@@ -22,9 +22,18 @@ App({
       createTime: Date.now()
     }
     wx.setStorageSync('userInfo', defaultUser)
-    wx.setStorageSync('points', 0)
+    wx.setStorageSync('points', 100)
+    const pointsHistory = [
+      {
+        amount: 100,
+        reason: '新用户注册奖励',
+        balance: 100,
+        time: Date.now()
+      }
+    ]
+    wx.setStorageSync('pointsHistory', pointsHistory)
     this.globalData.userInfo = defaultUser
-    this.globalData.points = 0
+    this.globalData.points = 100
   },
 
   globalData: {

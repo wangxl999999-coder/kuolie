@@ -121,6 +121,15 @@ Page({
     myPosts.unshift(newPost)
     wx.setStorageSync('myPosts', myPosts)
 
+    this.setData({
+      selectedCategory: 0,
+      content: '',
+      images: [],
+      isTop: false,
+      canPublish: false,
+      points: pointsUtil.getPoints()
+    })
+
     setTimeout(() => {
       wx.hideLoading()
       wx.showToast({
